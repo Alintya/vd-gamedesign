@@ -13,13 +13,13 @@ public class Projectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void FixedUpdate()
@@ -27,7 +27,7 @@ public class Projectile : MonoBehaviour
         transform.Translate(Vector3.forward * Speed * Time.fixedDeltaTime);
         _travelTime += Time.fixedDeltaTime;
 
-        if (_travelTime >= Range)
+        if (_travelTime * Speed >= Range)
         {
             Destroy(gameObject);
         }
