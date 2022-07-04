@@ -5,8 +5,9 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public float Speed = 5f;
-    public float Range = 500f;
-
+    public float Range = 10f;
+    public int Damage = 1;
+    public GameObject Instingator;
 
     private float _travelTime = 0f;
 
@@ -20,6 +21,15 @@ public class Projectile : MonoBehaviour
     void Update()
     {
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject != Instingator)
+        {
+            var health = other.gameObject.GetComponent<Health>();
+            if (health) health.TakeDamage(Damage);
+        }
     }
 
     private void FixedUpdate()

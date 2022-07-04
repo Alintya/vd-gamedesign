@@ -5,17 +5,16 @@ public class PlayerMovement : MonoBehaviour
 {
     public float MoveSpeed = 5f;
     public PlayerInputActions PlayerControls;
-    
-    
+
     private Camera _cam;
-  
+
     private Rigidbody _rb;
     private Vector2 _targetPosition;
     private Quaternion _targetRotation;
+    private CharacterController characterController;
 
     private InputAction _moveAction;
     private InputAction _lookAction;
-    private InputAction _fireAction;
 
     private void Awake()
     {
@@ -23,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
         _cam = Camera.main;
 
         PlayerControls = new PlayerInputActions();
+        characterController = gameObject.GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
         _targetPosition = _moveAction.ReadValue<Vector2>();
         var screenPos = _lookAction.ReadValue<Vector2>();
 
-        var playerPlane = new Plane(Vector3.up, transform.position);  
+        var playerPlane = new Plane(Vector3.up, transform.position + new Vector3(0, 0.5f, 0));
         var ray = _cam.ScreenPointToRay(screenPos);
 
         float hitDist;
@@ -44,16 +44,12 @@ public class PlayerMovement : MonoBehaviour
             _targetRotation.z = 0;
         }
     }
-    
+
     void FixedUpdate()
     {
-        _rb.MovePosition(_rb.position + MoveSpeed * Time.fixedDeltaTime * new Vector3(_targetPosition.x, 0, _targetPosition.y));
-        _rb.rotation = Quaternion.Slerp(_rb.rotation, _targetRotation, 7f * Time.fixedDeltaTime);
-    }
-
-    private void Fire(InputAction.CallbackContext ctx)
-    {
-        Debug.Log("Fire");
+        characterController.Move(MoveSpeed * Time.fixedDeltaTime * new Vector3(_targetPosition.x, 0, _targetPosition.y));
+        // _rb.MovePosition(_rb.position + MoveSpeed * Time.fixedDeltaTime * new Vector3(_targetPosition.x, 0, _targetPosition.y));
+        transform.rotation = Quaternion.Slerp(transform.rotation, _targetRotation, 7f * Time.fixedDeltaTime).normalized;
     }
 
     void OnEnable()
@@ -63,17 +59,11 @@ public class PlayerMovement : MonoBehaviour
 
         _lookAction = PlayerControls.Player.Look;
         _lookAction.Enable();
-
-        _fireAction = PlayerControls.Player.Fire;
-        _fireAction.Enable();
-
-        _fireAction.performed += Fire;
     }
 
     void OnDisable()
     {
         _moveAction.Disable();
         _lookAction.Disable();
-        _fireAction.Disable();
     }
 }
