@@ -25,6 +25,7 @@ public class FollowCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // TODO: stop if player is ded
         var pos = _player.position;
         pos.y += Height;
         pos.z -= 10f;
