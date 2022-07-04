@@ -1,13 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class FollowCamera : MonoBehaviour
 {
     public float SmoothingFactor = 0.3f;
     public float Height = 10f;
+    public bool Panning = true;
+    public float PanningAmmount = 1;
+    public float PanningMouseDistance = 0;
 
-    
+
     private Transform _player;
     private Vector3 _velocity = Vector3.zero;
 
@@ -15,11 +19,11 @@ public class FollowCamera : MonoBehaviour
     {
         _player = GameObject.FindGameObjectWithTag("Player").transform;
     }
-    
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -30,6 +34,16 @@ public class FollowCamera : MonoBehaviour
         pos.y += Height;
         pos.z -= 10f;
 
+        if (Panning)
+        {
+            Vector3 mousePos = Mouse.current.position.ReadValue();
+            Vector3 mousePosCenter = new Vector3(mousePos.x - Screen.width / 2, mousePos.y - Screen.height / 2, mousePos.z);
+            pos.x += PanningAmmount * Mathf.Clamp(mousePosCenter.x / (Screen.width / 2), -1, 1);
+            pos.y += PanningAmmount * Mathf.Clamp(mousePosCenter.y / (Screen.height / 2), -1, 1);
+            Debug.Log(PanningAmmount);
+        }
+
         transform.position = Vector3.SmoothDamp(transform.position, pos, ref _velocity, SmoothingFactor);
+
     }
 }
