@@ -8,7 +8,7 @@ public class Projectile : MonoBehaviour
     public float Range = 10f;
     public float Damage = 1;
     public bool IsEnemy, FriendlyFire, Collides, Penetrates;
-    public GameObject Instingator;
+    public GameObject Instigator;
 
     private float _travelTime = 0f;
 
@@ -33,7 +33,7 @@ public class Projectile : MonoBehaviour
         if(projectile && projectile.IsEnemy == IsEnemy) type = ColliderType.FRIENDLYPROJECTILE;
         if(projectile && projectile.IsEnemy != IsEnemy) type = ColliderType.OPPONENTPROJECTILE;
 
-        if (other.gameObject == Instingator 
+        if (other.gameObject == Instigator 
             || !FriendlyFire && type == ColliderType.FRIENDLY
             || !FriendlyFire && type == ColliderType.FRIENDLYPROJECTILE 
             || !Collides && (type == ColliderType.FRIENDLYPROJECTILE || type == ColliderType.OPPONENTPROJECTILE)

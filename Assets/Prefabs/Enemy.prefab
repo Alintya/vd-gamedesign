@@ -98,6 +98,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Mesh
       objectReference: {fileID: 0}
+    - target: {fileID: 3744190425316023441, guid: 2e2512ab6fcba304396d03d20d14eb51,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 3744190425316023452, guid: 2e2512ab6fcba304396d03d20d14eb51,
         type: 3}
       propertyPath: m_Materials.Array.data[0]

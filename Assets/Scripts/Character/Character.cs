@@ -32,7 +32,7 @@ public class Character : MonoBehaviour
         var projectileInstance = Instantiate(Projectile, transform.position + ProjectileOffset, transform.rotation);
         var projectileScript = projectileInstance.GetComponent<Projectile>();
         projectileScript.Velocity =  characterController.velocity/2 + Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0) * projectileScript.Velocity;
-        projectileScript.Instingator = gameObject;
+        projectileScript.Instigator = gameObject;
         projectileScript.Range = AttackRange;
         projectileScript.Damage = AttackDamage;
     }

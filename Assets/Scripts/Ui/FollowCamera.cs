@@ -10,7 +10,6 @@ public class FollowCamera : MonoBehaviour
     public Vector3 Offset = new Vector3(0, 10f, -10f);
     public bool Panning = true;
     public float PanningAmmount = 1;
-    public float PanningMouseDistance = 0;
 
     private Transform _player;
     private Vector3 _velocity = Vector3.zero;
