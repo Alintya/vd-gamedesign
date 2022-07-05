@@ -12,6 +12,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: ProjectileEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 4903888690648119745, guid: a03b6467d51c94247a03aec29c80c0f0,
+        type: 3}
+      propertyPath: IsEnemy
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4903888690648119745, guid: a03b6467d51c94247a03aec29c80c0f0,
+        type: 3}
+      propertyPath: Collides
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4903888690648119749, guid: a03b6467d51c94247a03aec29c80c0f0,
         type: 3}
       propertyPath: m_RootOrder

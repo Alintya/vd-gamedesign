@@ -3,15 +3,16 @@ using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
-    public int MaxHealth;
-    public int StartHealth;
+    public float MaxHealth;
+    public float StartHealth;
+    public float DamageFactor = 1;
     public UnityEvent OnDeath;
     public Healthbar Healthbar;
     
     public bool IsDead => _currentHealth <= 0;
 
 
-    private int _currentHealth;
+    private float _currentHealth;
 
     public Health()
     {
@@ -39,9 +40,9 @@ public class Health : MonoBehaviour
 
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(float amount)
     {
-        _currentHealth -= amount;
+        _currentHealth -= amount * DamageFactor;
 
         if (Healthbar != null)
             Healthbar.UpdateHealth(_currentHealth);
@@ -50,7 +51,7 @@ public class Health : MonoBehaviour
             Die();
     }
 
-    public void Heal(int amount)
+    public void Heal(float amount)
     {
         _currentHealth += amount;
 
@@ -61,7 +62,7 @@ public class Health : MonoBehaviour
             Healthbar.UpdateHealth(_currentHealth);
     }
 
-    public void SetMaxHealth(int health)
+    public void SetMaxHealth(float health)
     {
         MaxHealth = health;
 
@@ -69,7 +70,7 @@ public class Health : MonoBehaviour
             Healthbar.SetMaxHealth(health);
     }
 
-    public void IncreaseMaxHealth(int amount)
+    public void IncreaseMaxHealth(float amount)
     {
         SetMaxHealth(MaxHealth + amount);
         Heal(amount);

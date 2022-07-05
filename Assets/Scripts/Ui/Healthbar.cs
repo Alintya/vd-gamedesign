@@ -8,12 +8,12 @@ public class Healthbar : MonoBehaviour
 
     private float _maxHealth = 100f;
 
-    public void SetMaxHealth(int health)
+    public void SetMaxHealth(float health)
     {
         _maxHealth = health;
     }
     
-    public void UpdateHealth(int health)
+    public void UpdateHealth(float health)
     {
         HealthSprite.fillAmount = health / _maxHealth;
     }

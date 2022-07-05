@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public PlayerInputActions PlayerControls;
     private Character _character;
     private InputAction _fireAction;
+    
     private void Awake()
     {
         _character = GetComponent<Character>();

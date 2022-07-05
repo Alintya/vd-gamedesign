@@ -15,6 +15,11 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 87123378234464308, guid: 2e2512ab6fcba304396d03d20d14eb51,
         type: 3}
+      propertyPath: AttackRange
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 87123378234464308, guid: 2e2512ab6fcba304396d03d20d14eb51,
+        type: 3}
       propertyPath: AttackDamage
       value: 2
       objectReference: {fileID: 0}
@@ -26,7 +31,7 @@ PrefabInstance:
     - target: {fileID: 3744190425061392875, guid: 2e2512ab6fcba304396d03d20d14eb51,
         type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 3744190425061392886, guid: 2e2512ab6fcba304396d03d20d14eb51,
         type: 3}
@@ -41,7 +46,7 @@ PrefabInstance:
     - target: {fileID: 3744190425061392886, guid: 2e2512ab6fcba304396d03d20d14eb51,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3744190425061392886, guid: 2e2512ab6fcba304396d03d20d14eb51,
         type: 3}
@@ -124,7 +129,7 @@ MonoBehaviour:
     m_Bits: 1
   WalkPointRange: 5
   SightingRange: 15
-  AttackingRange: 5
+  AttackingRange: 1
   TimeBetweenAttacks: 0.5
 --- !u!195 &4139670917015171392
 NavMeshAgent:
