@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
         _cam = Camera.main;
 
         PlayerControls = new PlayerInputActions();
-        characterController = gameObject.GetComponent<CharacterController>();
+        characterController = GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
