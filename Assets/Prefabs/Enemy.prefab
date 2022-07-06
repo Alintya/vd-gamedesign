@@ -110,6 +110,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 402d9d1cea164d44abf883e6ff66da69, type: 2}
     m_RemovedComponents:
     - {fileID: 3744190425061392887, guid: 2e2512ab6fcba304396d03d20d14eb51, type: 3}
+    - {fileID: 87123378234464308, guid: 2e2512ab6fcba304396d03d20d14eb51, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2e2512ab6fcba304396d03d20d14eb51, type: 3}
 --- !u!1 &4416618965336982261 stripped
 GameObject:
@@ -129,6 +130,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03f758a062340c141af6ec7b277891c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Projectile: {fileID: 5517200317137214012, guid: dd93fd07bf4124e48990f77dedf3023d,
+    type: 3}
+  AttackDamage: 1
+  AttackRange: 2
+  ProjectileOffset: {x: 0, y: 1, z: 0}
   WhatIsGround:
     serializedVersion: 2
     m_Bits: 1

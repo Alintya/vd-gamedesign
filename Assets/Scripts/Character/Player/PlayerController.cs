@@ -3,41 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Character
 {
     public PlayerInputActions PlayerControls;
-    private Character _character;
     private InputAction _fireAction;
-    
-    private void Awake()
+
+    protected override void Awake()
     {
-        _character = GetComponent<Character>();
+        base.Awake();
         PlayerControls = new PlayerInputActions();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void Fire(InputAction.CallbackContext ctx)
-    {
-        _character.Fire();
-    }
-    
     void OnEnable()
     {
         _fireAction = PlayerControls.Player.Fire;
         _fireAction.Enable();
 
-        _fireAction.performed += Fire;
+        _fireAction.performed += (InputAction.CallbackContext ctx) => { _fireing = true; };
+        _fireAction.canceled += (InputAction.CallbackContext ctx) => { _fireing = false; };
     }
 
     void OnDisable()

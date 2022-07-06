@@ -40,7 +40,7 @@ public class Enemy : MonoBehaviour
     {
         PlayerTransform = GameObject.Find("Player Character").transform;
         NavMeshAgent = GetComponent<NavMeshAgent>();
-        damage = this.gameObject.GetComponent<Damage>().damageAmount;
+        // damage = this.gameObject.GetComponent<Damage>().damageAmount;
         
     }
    

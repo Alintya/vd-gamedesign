@@ -2,29 +2,26 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyAi : MonoBehaviour
+public class EnemyController : Character
 {
     public LayerMask WhatIsGround;
     public float WalkPointRange = 5, SightingRange = 15, AttackingRange = 5;
-    public float TimeBetweenAttacks;
-
-    private bool _alreadyAttacked;
     private Vector3 _walkPoint;
     private bool _walkPointSet;
     private NavMeshAgent _agent;
     private Transform _player;
     private bool _playerInSightRange, _playerInAttackRange;
-    private Character _character;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         _player = GameObject.FindGameObjectWithTag("Player").transform;
         _agent = GetComponent<NavMeshAgent>();
-        _character = GetComponent<Character>();
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
         //Check for sight and attack range
         var playerDist = (transform.position - _player.position).magnitude;
         _playerInSightRange = playerDist <= SightingRange;
@@ -32,7 +29,14 @@ public class EnemyAi : MonoBehaviour
 
         if (!_playerInSightRange && !_playerInAttackRange) Patroling();
         if (_playerInSightRange && !_playerInAttackRange) ChasePlayer();
-        if (_playerInAttackRange && _playerInSightRange) AttackPlayer();
+        if (_playerInAttackRange && _playerInSightRange)
+        {
+            AttackPlayer();
+        }
+        else
+        {
+            _fireing = false;
+        }
     }
 
     private void Patroling()
@@ -72,24 +76,7 @@ public class EnemyAi : MonoBehaviour
 
         transform.LookAt(_player);
 
-        if (!_alreadyAttacked)
-        {
-            ///Attack code here
-            _character.Fire();
-            ///End of attack code
-
-            _alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), TimeBetweenAttacks);
-        }
-    }
-    private void ResetAttack()
-    {
-        _alreadyAttacked = false;
-    }
-
-    private void DestroyEnemy()
-    {
-        Destroy(gameObject);
+        _fireing = true;
     }
 
     // private void OnDrawGizmosSelected()

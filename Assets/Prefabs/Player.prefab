@@ -113,7 +113,8 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 87123378234464308, guid: 2e2512ab6fcba304396d03d20d14eb51, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2e2512ab6fcba304396d03d20d14eb51, type: 3}
 --- !u!1 &5565263204578111858 stripped
 GameObject:
@@ -146,3 +147,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35869bd798bb50d4b89958e6238750b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Projectile: {fileID: 4903888690648119744, guid: a03b6467d51c94247a03aec29c80c0f0,
+    type: 3}
+  AttackDamage: 5
+  FireRate: 10
+  AttackRange: 10
+  ProjectileOffset: {x: 0, y: 1, z: 0}

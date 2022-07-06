@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
 
     private InputAction _moveAction;
     private InputAction _lookAction;
+    private List<string> gamepadBindings = new List<string>();
+    private bool _useController;
 
     private void Awake()
     {
@@ -28,8 +32,18 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (_moveAction.activeControl != null)
+        {
+            bool flag = _useController;
+            _useController = gamepadBindings.Contains(_moveAction.activeControl?.name);
+            if (flag != _useController) OnEnable();
+        }
+
         _targetPosition = _moveAction.ReadValue<Vector2>();
-        var screenPos = _lookAction.ReadValue<Vector2>();
+
+        var screenPos = _lookAction.ReadValue<Vector2>() * (_useController ? new Vector2(Screen.width / 2, Screen.height / 2) : Vector2.one) 
+                                                         + (_useController ? new Vector2(Screen.width / 2, Screen.height / 2) : Vector2.zero);
+        Debug.Log(_lookAction.ReadValue<Vector2>());
 
         var playerPlane = new Plane(Vector3.up, transform.position + new Vector3(0, 0.5f, 0));
         var ray = _cam.ScreenPointToRay(screenPos);
@@ -54,10 +68,33 @@ public class PlayerMovement : MonoBehaviour
 
     void OnEnable()
     {
+
+        // _lookAction.Disable();
         _moveAction = PlayerControls.Player.Move;
         _moveAction.Enable();
+        foreach (var binding in _moveAction.bindings)
+        {
+            if (binding.effectivePath.Contains("<Gamepad>"))
+            {
+                gamepadBindings.Add(binding.effectivePath.Split("/").Last());
+                Debug.Log(binding.path);
+            }
+        }
 
         _lookAction = PlayerControls.Player.Look;
+
+        if (_useController)
+        {
+            _lookAction.bindingMask = new InputBinding()
+            {
+                // Select the keyboard binding based on its specific path.
+                path = "<Gamepad>/rightStick"
+            };
+        }
+        else
+        {
+            _lookAction.bindingMask = null;
+        }
         _lookAction.Enable();
     }
 

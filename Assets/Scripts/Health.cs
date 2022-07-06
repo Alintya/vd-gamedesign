@@ -3,26 +3,20 @@ using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
-    public float MaxHealth;
-    public float StartHealth;
-    public float DamageFactor = 1;
+    public float MaxHealth = 100f;
+    public float StartHealth = 100f;
+    public float DamageFactor = 1f;
     public UnityEvent OnDeath;
     public Healthbar Healthbar;
     
     public bool IsDead => _currentHealth <= 0;
 
-
+    [SerializeField]
     private float _currentHealth;
-
-    public Health()
-    {
-        MaxHealth = 100;
-        StartHealth = 100;
-        _currentHealth = StartHealth;
-    }
 
     void Awake()
     {
+        _currentHealth = StartHealth;
         if (Healthbar == null)
             Healthbar = GetComponentInChildren<Healthbar>();
         Healthbar?.SetMaxHealth(MaxHealth);

@@ -7,6 +7,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4001061864675918150, guid: 4bc456ccadd4ab540914391464fdc03f,
+        type: 3}
+      propertyPath: AttackRange
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4001061864675918150, guid: 4bc456ccadd4ab540914391464fdc03f,
+        type: 3}
+      propertyPath: AttackingRange
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4416618963971435265, guid: 4bc456ccadd4ab540914391464fdc03f,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -90,12 +100,12 @@ PrefabInstance:
     - target: {fileID: 4416618965336982251, guid: 4bc456ccadd4ab540914391464fdc03f,
         type: 3}
       propertyPath: MaxHealth
-      value: 150
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 4416618965336982251, guid: 4bc456ccadd4ab540914391464fdc03f,
         type: 3}
       propertyPath: StartHealth
-      value: 150
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 4416618965336982261, guid: 4bc456ccadd4ab540914391464fdc03f,
         type: 3}
